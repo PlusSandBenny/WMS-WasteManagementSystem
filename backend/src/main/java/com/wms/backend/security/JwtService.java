@@ -1,11 +1,11 @@
 package com.wms.backend.security;
 
+import com.wms.backend.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -19,7 +19,11 @@ public class JwtService {
 
     private final Key signingKey;
 
-    public JwtService(@Value("${jwt.secret}") String secret) {
+    public JwtService(JwtProperties jwtProperties) {
+        String secret = jwtProperties.getSecret();
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException("jwt.secret is required");
+        }
         byte[] keyBytes;
         try {
             keyBytes = Decoders.BASE64.decode(secret);
@@ -49,4 +53,3 @@ public class JwtService {
                 .getBody();
     }
 }
-

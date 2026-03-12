@@ -15,6 +15,7 @@ C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\ma
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\web\HolidayController.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\config\StaticResourceConfig.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\repo\UserRepository.java
+C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\config\JwtProperties.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\domain\model\CollectionSchedule.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\security\JwtAuthFilter.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\service\CollectionService.java
@@ -25,6 +26,7 @@ C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\ma
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\service\ScheduleService.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\domain\enums\IssueType.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\service\PdfInvoiceService.java
+C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\config\AppProperties.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\domain\enums\Role.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\repo\VehicleRepository.java
 C:\Users\BenOA\CodexWorkDir\Testproject\WMS-WasteManagementSystem\backend\src\main\java\com\wms\backend\web\CollectionController.java

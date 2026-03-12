@@ -1,9 +1,9 @@
 package com.wms.backend.web;
 
+import com.wms.backend.config.AppProperties;
 import com.wms.backend.domain.enums.Role;
 import com.wms.backend.service.AuthService;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +16,9 @@ public class AuthController {
     private final AuthService authService;
     private final boolean returnOtpInResponse;
 
-    public AuthController(AuthService authService, @Value("${app.otp.return-code:true}") boolean returnOtpInResponse) {
+    public AuthController(AuthService authService, AppProperties appProperties) {
         this.authService = authService;
-        this.returnOtpInResponse = returnOtpInResponse;
+        this.returnOtpInResponse = appProperties.getOtp().isReturnCode();
     }
 
     public record RequestOtpRequest(@NotBlank String destination) {
@@ -46,4 +46,3 @@ public class AuthController {
         return ResponseEntity.ok(new VerifyOtpResponse(tokens.accessToken(), tokens.refreshToken(), tokens.hasAddress(), tokens.role()));
     }
 }
-

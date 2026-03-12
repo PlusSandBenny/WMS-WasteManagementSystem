@@ -7,7 +7,9 @@ com\wms\backend\web\AuthController.class
 com\wms\backend\repo\CollectionRecordRepository.class
 com\wms\backend\web\ScheduleController$PickupDto.class
 com\wms\backend\service\ScheduleService.class
+META-INF\spring-configuration-metadata.json
 com\wms\backend\domain\model\IssueMessage.class
+com\wms\backend\config\AppProperties$Otp.class
 com\wms\backend\web\MeController$AddressResponse.class
 com\wms\backend\service\AuthService.class
 com\wms\backend\service\CollectionService.class
@@ -25,6 +27,7 @@ com\wms\backend\web\IssueController$AddMessageRequest.class
 com\wms\backend\service\OtpService.class
 com\wms\backend\service\RealtimeService.class
 com\wms\backend\web\MeController$NextPickup.class
+com\wms\backend\config\AppProperties$Jwt.class
 com\wms\backend\web\RestExceptionHandler.class
 com\wms\backend\service\ScheduleService$Pickup.class
 com\wms\backend\WasteManagementBackendApplication.class
@@ -36,6 +39,7 @@ com\wms\backend\web\FinanceController.class
 com\wms\backend\service\ScheduleService$MonthSchedule.class
 com\wms\backend\web\MeController$HomeResponse.class
 com\wms\backend\web\IssueController$SenderDto.class
+com\wms\backend\config\JwtProperties.class
 com\wms\backend\repo\IssueMessageRepository.class
 com\wms\backend\web\MeController$InvoiceSummary.class
 com\wms\backend\domain\model\Address.class
@@ -57,6 +61,7 @@ com\wms\backend\web\AuthController$RequestOtpRequest.class
 com\wms\backend\repo\InvoiceRepository.class
 com\wms\backend\web\PaymentController$StubWebhookRequest.class
 com\wms\backend\web\IssueController$MessageDto.class
+com\wms\backend\config\AppProperties.class
 com\wms\backend\web\ScheduleController$MonthScheduleResponse.class
 com\wms\backend\security\SecurityConfig.class
 com\wms\backend\web\VehicleController$UpsertVehicleRequest.class
@@ -75,6 +80,7 @@ com\wms\backend\web\BillingController.class
 com\wms\backend\web\AuthController$VerifyOtpRequest.class
 com\wms\backend\service\FinanceService.class
 com\wms\backend\web\MeController$UpdateAddressRequest.class
+com\wms\backend\config\AppProperties$Billing.class
 com\wms\backend\domain\BaseEntity.class
 com\wms\backend\security\JwtService.class
 com\wms\backend\repo\VehicleRepository.class
@@ -88,6 +94,7 @@ com\wms\backend\service\CollectionService$TodayStatus.class
 com\wms\backend\web\ScheduleController.class
 com\wms\backend\config\StaticResourceConfig.class
 com\wms\backend\security\JwtAuthFilter.class
+com\wms\backend\config\AppProperties$Uploads.class
 com\wms\backend\domain\model\Vehicle.class
 com\wms\backend\security\UserPrincipal.class
 com\wms\backend\repo\UserRepository.class

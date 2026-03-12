@@ -1,35 +1,49 @@
-# Waste Management System - Nigeria Residential Waste Management & Billing Platform
+# Waste Management System (Nigeria) - Residential Waste Management & Billing Platform
 
-## Overview
-This is a comprehensive SaaS solution for waste management in Nigeria, providing residents with easy access to waste collection services and government councils with real-time monitoring and control.
+## Overview (Phase 1)
+This repository contains a Phase 1 implementation of a Nigeria Residential Waste Management & Billing Platform:
+- Verified Nigerian address onboarding (State -> LGA -> Street + House Number + Landmark; no postcodes)
+- Address-based monthly schedule calendar with holiday week-shift rules
+- Resident view: "Has my waste been picked up today?" and "When is the next pickup?"
+- Government finance unpaid dashboard by LGA (real-time updates)
+- Fleet tools (vehicles) and route supervisor marking (picked/missed/reported)
+- Issue reporting with photo upload + in-app message thread
+- PDF invoice rendering
+- PWA build with offline-friendly caching for low-connectivity areas
 
-## Features
-- Resident registration and address verification
-- Real-time waste collection scheduling and tracking
-- Payment processing (monthly fees, subscriptions, special collections)
-- Government dashboard for monitoring unpaid households and collection status
-- Fleet and employee management
-- Issue reporting with photo upload
-- Multi-language support (English, Yoruba, Hausa, Igbo)
-- PWA for mobile access
-- Offline functionality for low-connectivity areas
+Docs: `docs/PHASE1_SCOPE.md`, `docs/WIREFRAMES.md`, `docs/SPRINT_PLAN.md`, `docs/JIRA_BACKLOG_PHASE1.csv`.
+
+## What Is Implemented vs Planned
+
+### Implemented (Phase 1)
+- OTP login (dev OTP returned in API response)
+- JWT auth + role-based access (RESIDENT, FINANCE_OFFICER, FLEET_MANAGER, ROUTE_SUPERVISOR, SUPER_ADMIN)
+- Schedule calendar by LGA + public holiday week shift (+1 day for that week)
+- Collection status recording and real-time resident updates (WebSocket STOMP)
+- Monthly invoices + unpaid dashboard with real-time reconciliation updates
+- Issue reporting + photo upload + message thread per issue
+- PDF invoice generation (OpenPDF)
+- PWA build with API runtime caching
+
+### Planned / Provider Wiring (Phase 2)
+- Payments via Paystack/Flutterwave/Remita (Phase 1 uses a stub webhook to simulate reconciliation)
+- Push/SMS/Email notification provider integrations
+- Multi-language UI (English-only in Phase 1)
 
 ## Technology Stack
-- **Frontend**: React with Vite (PWA support)
-- **Backend**: Java Spring Boot
-- **Database**: MySQL
-- **Authentication**: JWT with OTP
-- **Payments**: Integration with Paystack, Flutterwave, Remita
-- **Notifications**: Push notifications, SMS, Email
+- Frontend: React + Vite + PWA (Workbox runtime caching)
+- Backend: Java 17 + Spring Boot 3 (Web, Security, JPA, WebSocket STOMP)
+- Database: MySQL in dev/prod; H2 in-memory for tests
+- Real-time: WebSocket endpoint `/ws` and topics under `/topic/...`
 
 ## Project Structure
 ```
 WMS-WasteManagementSystem/
-├── frontend/          # React application
-├── backend/           # Spring Boot application
-├── database/          # MySQL scripts and schema
-├── docs/              # Documentation
-└── .github/           # GitHub workflows and instructions
+|-- frontend/          # React application (PWA)
+|-- backend/           # Spring Boot application
+|-- database/          # MySQL schema (baseline/reference)
+|-- docs/              # Scope + wireframes + sprint plan + backlog
+`-- .github/           # GitHub workflows and instructions
 ```
 
 ## Getting Started
@@ -40,38 +54,69 @@ WMS-WasteManagementSystem/
 - MySQL (v8+)
 - Maven
 
-### Installation
+### Database
+- The backend is configured for MySQL by default in `backend/src/main/resources/application.properties`.
+- A baseline schema is available at `database/schema.sql` (useful for provisioning/reference). The app also uses JPA schema management for local dev.
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd WMS-WasteManagementSystem
-   ```
+Example:
+```bash
+mysql -u root -p < database/schema.sql
+```
 
-2. **Setup Database**
-   ```bash
-   mysql -u root -p < database/schema.sql
-   ```
+### Backend
+```bash
+cd backend
+mvn -s maven-settings.xml spring-boot:run
+```
 
-3. **Setup Backend**
-   ```bash
-   cd backend
-   mvn clean install
-   mvn spring-boot:run
-   ```
+Notes:
+- `backend/maven-settings.xml` pins Maven's local repo to `backend/.m2/repository` (helpful in restricted/sandboxed environments).
+- Demo seeded users exist for local dev: `finance@demo.ng`, `superadmin@demo.ng` (login via OTP).
+- Dev OTP is returned in the response by default (`app.otp.return-code=true`). Disable in production.
 
-4. **Setup Frontend**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## API Documentation
-API endpoints will be documented using Swagger/OpenAPI.
+PowerShell note (Windows):
+- If `npm` is blocked by execution policy, run via `cmd`:
+  - `cmd /c "npm install"`
+  - `cmd /c "npm run dev"`
 
-## Contributing
-Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
+## Core Endpoints (Phase 1)
+- Auth:
+  - `POST /api/auth/request-otp`
+  - `POST /api/auth/verify-otp`
+- Resident:
+  - `GET /api/me`
+  - `PUT /api/me/address`
+  - `GET /api/me/home`
+  - `GET /api/schedule/month?year=YYYY&month=M`
+- Billing/Finance:
+  - `POST /api/billing/run-monthly?year=YYYY&month=M` (FINANCE_OFFICER/SUPER_ADMIN)
+  - `GET /api/finance/unpaid?lga=...&year=YYYY&month=M` (FINANCE_OFFICER/SUPER_ADMIN)
+  - `GET /api/invoices/{invoiceId}/pdf`
+- Payments (stub):
+  - `POST /api/payments/intent`
+  - `POST /api/payments/webhook/stub`
+- Operations:
+  - `GET/POST/PUT /api/vehicles` (FLEET_MANAGER/SUPER_ADMIN)
+  - `POST /api/collections/{addressId}/mark` (ROUTE_SUPERVISOR/SUPER_ADMIN)
+- Issues:
+  - `POST /api/issues` (multipart: JSON + optional photo)
+  - `GET /api/issues/me`
+  - `GET/POST /api/issues/{issueId}/messages`
+
+## Running Tests (JUnit)
+```bash
+cd backend
+mvn -s maven-settings.xml test
+```
+Tests use an in-memory H2 database via `backend/src/test/resources/application-test.properties`.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License, see `LICENSE`.
+

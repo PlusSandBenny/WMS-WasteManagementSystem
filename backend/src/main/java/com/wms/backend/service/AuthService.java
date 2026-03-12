@@ -1,5 +1,6 @@
 package com.wms.backend.service;
 
+import com.wms.backend.config.AppProperties;
 import com.wms.backend.domain.enums.Role;
 import com.wms.backend.domain.model.User;
 import com.wms.backend.repo.AddressRepository;
@@ -32,16 +33,15 @@ public class AuthService {
             OtpService otpService,
             JwtService jwtService,
             PasswordEncoder passwordEncoder,
-            @Value("${app.jwt.access-ttl-seconds:900}") long accessTtlSeconds,
-            @Value("${app.jwt.refresh-ttl-seconds:2592000}") long refreshTtlSeconds
+            AppProperties appProperties
     ) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.otpService = otpService;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
-        this.accessTtl = Duration.ofSeconds(accessTtlSeconds);
-        this.refreshTtl = Duration.ofSeconds(refreshTtlSeconds);
+        this.accessTtl = Duration.ofSeconds(appProperties.getJwt().getAccessTtlSeconds());
+        this.refreshTtl = Duration.ofSeconds(appProperties.getJwt().getRefreshTtlSeconds());
     }
 
     public String requestOtp(String destination) {
@@ -95,4 +95,3 @@ public class AuthService {
     public record AuthTokens(String accessToken, String refreshToken, boolean hasAddress, Role role) {
     }
 }
-

@@ -1,0 +1,75 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.wms.backend.config.AppProperties",
+      "sourceType": "com.wms.backend.config.AppProperties"
+    },
+    {
+      "name": "app.billing",
+      "type": "com.wms.backend.config.AppProperties$Billing",
+      "sourceType": "com.wms.backend.config.AppProperties",
+      "sourceMethod": "getBilling()"
+    },
+    {
+      "name": "app.jwt",
+      "type": "com.wms.backend.config.AppProperties$Jwt",
+      "sourceType": "com.wms.backend.config.AppProperties",
+      "sourceMethod": "getJwt()"
+    },
+    {
+      "name": "app.otp",
+      "type": "com.wms.backend.config.AppProperties$Otp",
+      "sourceType": "com.wms.backend.config.AppProperties",
+      "sourceMethod": "getOtp()"
+    },
+    {
+      "name": "app.uploads",
+      "type": "com.wms.backend.config.AppProperties$Uploads",
+      "sourceType": "com.wms.backend.config.AppProperties",
+      "sourceMethod": "getUploads()"
+    },
+    {
+      "name": "jwt",
+      "type": "com.wms.backend.config.JwtProperties",
+      "sourceType": "com.wms.backend.config.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.billing.default-monthly-fee-ngn",
+      "type": "java.math.BigDecimal",
+      "sourceType": "com.wms.backend.config.AppProperties$Billing"
+    },
+    {
+      "name": "app.jwt.access-ttl-seconds",
+      "type": "java.lang.Long",
+      "sourceType": "com.wms.backend.config.AppProperties$Jwt",
+      "defaultValue": 900
+    },
+    {
+      "name": "app.jwt.refresh-ttl-seconds",
+      "type": "java.lang.Long",
+      "sourceType": "com.wms.backend.config.AppProperties$Jwt",
+      "defaultValue": 2592000
+    },
+    {
+      "name": "app.otp.return-code",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.wms.backend.config.AppProperties$Otp",
+      "defaultValue": true
+    },
+    {
+      "name": "app.uploads.dir",
+      "type": "java.lang.String",
+      "sourceType": "com.wms.backend.config.AppProperties$Uploads",
+      "defaultValue": "uploads"
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.wms.backend.config.JwtProperties"
+    }
+  ],
+  "hints": []
+}

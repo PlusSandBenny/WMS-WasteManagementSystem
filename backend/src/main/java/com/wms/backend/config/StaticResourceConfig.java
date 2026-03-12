@@ -12,8 +12,8 @@ public class StaticResourceConfig implements WebMvcConfigurer {
 
     private final String uploadsDir;
 
-    public StaticResourceConfig(@Value("${app.uploads.dir:uploads}") String uploadsDir) {
-        this.uploadsDir = uploadsDir;
+    public StaticResourceConfig(AppProperties appProperties) {
+        this.uploadsDir = appProperties.getUploads().getDir();
     }
 
     @Override
@@ -23,4 +23,3 @@ public class StaticResourceConfig implements WebMvcConfigurer {
                 .addResourceLocations(location);
     }
 }
-

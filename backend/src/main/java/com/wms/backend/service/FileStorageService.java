@@ -1,5 +1,6 @@
 package com.wms.backend.service;
 
+import com.wms.backend.config.AppProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -16,8 +17,8 @@ public class FileStorageService {
 
     private final Path baseDir;
 
-    public FileStorageService(@Value("${app.uploads.dir:uploads}") String uploadsDir) {
-        this.baseDir = Path.of(uploadsDir).toAbsolutePath().normalize();
+    public FileStorageService(AppProperties appProperties) {
+        this.baseDir = Path.of(appProperties.getUploads().getDir()).toAbsolutePath().normalize();
     }
 
     public StoredFile storeIssuePhoto(Long issueId, MultipartFile file) {
@@ -49,4 +50,3 @@ public class FileStorageService {
     public record StoredFile(String publicUrl, Path path) {
     }
 }
-

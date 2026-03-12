@@ -1,5 +1,6 @@
 package com.wms.backend.service;
 
+import com.wms.backend.config.AppProperties;
 import com.wms.backend.domain.model.Address;
 import com.wms.backend.domain.model.Invoice;
 import com.wms.backend.repo.AddressRepository;
@@ -25,11 +26,11 @@ public class BillingService {
     public BillingService(
             AddressRepository addressRepository,
             InvoiceRepository invoiceRepository,
-            @Value("${app.billing.default-monthly-fee-ngn:2000}") BigDecimal defaultMonthlyFee
+            AppProperties appProperties
     ) {
         this.addressRepository = addressRepository;
         this.invoiceRepository = invoiceRepository;
-        this.defaultMonthlyFee = defaultMonthlyFee;
+        this.defaultMonthlyFee = appProperties.getBilling().getDefaultMonthlyFeeNgn();
     }
 
     @Transactional
