@@ -3,12 +3,11 @@ package com.wms.backend.security;
 import com.wms.backend.config.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
@@ -17,7 +16,7 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    private final Key signingKey;
+    private final SecretKey signingKey;
 
     public JwtService(JwtProperties jwtProperties) {
         String secret = jwtProperties.getSecret();
@@ -41,15 +40,15 @@ public class JwtService {
                 .addClaims(claims)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(exp))
-                .signWith(signingKey, SignatureAlgorithm.HS256)
+                .signWith(signingKey)
                 .compact();
     }
 
     public Claims parseClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(signingKey)
+        return Jwts.parser()
+                .verifyWith(signingKey)
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 }
