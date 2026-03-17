@@ -32,7 +32,7 @@ Docs: `docs/PHASE1_SCOPE.md`, `docs/WIREFRAMES.md`, `docs/SPRINT_PLAN.md`, `docs
 
 ## Technology Stack
 - Frontend: React + Vite + PWA (Workbox runtime caching)
-- Backend: Java 17 + Spring Boot 3 (Web, Security, JPA, WebSocket STOMP)
+- Backend: Java 21 + Spring Boot 3 (Web, Security, JPA, WebSocket STOMP)
 - Database: MySQL in dev/prod; H2 in-memory for tests
 - Real-time: WebSocket endpoint `/ws` and topics under `/topic/...`
 
@@ -50,7 +50,7 @@ WMS-WasteManagementSystem/
 
 ### Prerequisites
 - Node.js (v18+)
-- Java (v17+)
+- Java (v21+)
 - MySQL (v8+)
 - Maven
 
@@ -116,6 +116,9 @@ cd backend
 mvn -s maven-settings.xml test
 ```
 Tests use an in-memory H2 database via `backend/src/test/resources/application-test.properties`.
+
+## Changelog
+- **2026-03-16**: Upgraded Java runtime to version 21 LTS for improved security, performance, and long-term support. All tests pass with the new version.
 
 ## License
 MIT License, see `LICENSE`.
