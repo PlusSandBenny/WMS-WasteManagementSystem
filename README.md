@@ -119,6 +119,7 @@ Tests use an in-memory H2 database via `backend/src/test/resources/application-t
 
 ## Changelog
 - **2026-03-16**: Upgraded Java runtime to version 21 LTS for improved security, performance, and long-term support. All tests pass with the new version.
+- **2026-03-17**: Upgraded dependencies for security: JJWT to 0.12.6, H2 to 2.3.232. No CVEs detected in current dependencies.
 
 ## License
 MIT License, see `LICENSE`.
