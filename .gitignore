@@ -1,0 +1,40 @@
+# Java/Maven
+target/
+*.jar
+*.war
+*.ear
+*.class
+.mvn/wrapper/maven-wrapper.jar
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# Environment
+.env
+.env.local
+
+# GitHub
+.github/java-upgrade/
