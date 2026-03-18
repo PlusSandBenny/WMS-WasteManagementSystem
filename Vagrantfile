@@ -36,6 +36,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     cd /home/vagrant/WMS-WasteManagementSystem
-    sudo docker-compose up -d
+    docker-compose down -v || true
+    docker-compose up --build -d
   SHELL
 end
