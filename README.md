@@ -71,7 +71,7 @@ mvn -s maven-settings.xml spring-boot:run
 
 Notes:
 - `backend/maven-settings.xml` pins Maven's local repo to `backend/.m2/repository` (helpful in restricted/sandboxed environments).
-- Demo seeded users exist for local dev: `finance@demo.ng`, `superadmin@demo.ng` (login via OTP).
+- Demo seeded users exist for local dev: `finance@demo.ng`, `superadmin@demo.ng`, `resident@demo.ng`, `fleet@demo.ng`, `route@demo.ng`, `contractor@demo.ng` (login via OTP).
 - Dev OTP is returned in the response by default (`app.otp.return-code=true`). Disable in production.
 
 ### Frontend

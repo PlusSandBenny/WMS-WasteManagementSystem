@@ -23,6 +23,10 @@ The system supports several roles (assigned in the database seed data):
 Default demo users are seeded for development (credentials in `backend/src/main/resources/data` or seed logic):
 - `finance@demo.ng` (Finance)
 - `superadmin@demo.ng` (Admin)
+- `resident@demo.ng` (Resident)
+- `fleet@demo.ng` (Fleet Manager)
+- `route@demo.ng` (Route Supervisor)
+- `contractor@demo.ng` (Contractor)
 
 
 ## 3. Running the Application

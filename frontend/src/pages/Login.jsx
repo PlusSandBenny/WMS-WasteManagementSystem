@@ -89,7 +89,7 @@ export default function Login() {
         </form>
 
         <div className="auth-foot">
-          Demo users: <code>finance@demo.ng</code>, <code>superadmin@demo.ng</code>
+          Demo users: <code>finance@demo.ng</code>, <code>superadmin@demo.ng</code>, <code>resident@demo.ng</code>, <code>fleet@demo.ng</code>, <code>route@demo.ng</code>, <code>contractor@demo.ng</code>
         </div>
       </div>
     </div>

@@ -46,6 +46,38 @@ public class DataSeeder {
                 admin.setPasswordHash(passwordEncoder.encode("OTP_LOGIN_ONLY"));
                 userRepository.save(admin);
             }
+
+            if (userRepository.findByEmailIgnoreCase("resident@demo.ng").isEmpty()) {
+                User resident = new User();
+                resident.setEmail("resident@demo.ng");
+                resident.setRole(Role.RESIDENT);
+                resident.setPasswordHash(passwordEncoder.encode("OTP_LOGIN_ONLY"));
+                userRepository.save(resident);
+            }
+
+            if (userRepository.findByEmailIgnoreCase("fleet@demo.ng").isEmpty()) {
+                User fleet = new User();
+                fleet.setEmail("fleet@demo.ng");
+                fleet.setRole(Role.FLEET_MANAGER);
+                fleet.setPasswordHash(passwordEncoder.encode("OTP_LOGIN_ONLY"));
+                userRepository.save(fleet);
+            }
+
+            if (userRepository.findByEmailIgnoreCase("route@demo.ng").isEmpty()) {
+                User route = new User();
+                route.setEmail("route@demo.ng");
+                route.setRole(Role.ROUTE_SUPERVISOR);
+                route.setPasswordHash(passwordEncoder.encode("OTP_LOGIN_ONLY"));
+                userRepository.save(route);
+            }
+
+            if (userRepository.findByEmailIgnoreCase("contractor@demo.ng").isEmpty()) {
+                User contractor = new User();
+                contractor.setEmail("contractor@demo.ng");
+                contractor.setRole(Role.CONTRACTOR);
+                contractor.setPasswordHash(passwordEncoder.encode("OTP_LOGIN_ONLY"));
+                userRepository.save(contractor);
+            }
         };
     }
 
