@@ -48,6 +48,41 @@ Default demo users are seeded for development (credentials in `backend/src/main/
    - Backend API: `http://localhost:8083`
 
 
+## 4. Rebuilding and Resetting Containers
+If you make changes to the code or encounter issues with the database schema, you may need to rebuild the containers and reset the database volume. Follow these steps:
+
+### Step-by-Step Rebuild Process
+1. **Stop and remove all containers and volumes** (this deletes the old database data):
+   ```bash
+   docker-compose down -v
+   ```
+
+2. **Rebuild the images and start the containers**:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Verify containers are running**:
+   ```bash
+   docker-compose ps
+   ```
+   You should see all services (db, backend, frontend) with status "Up".
+
+4. **Check logs if containers fail to start**:
+   - Backend logs: `docker-compose logs backend --tail=50`
+   - Frontend logs: `docker-compose logs frontend --tail=50`
+   - Database logs: `docker-compose logs db --tail=50`
+
+5. **Access the application**:
+   - Frontend: `http://localhost` (or `http://localhost:8082` in Vagrant)
+   - Backend API: `http://localhost:8080` (or `http://localhost:8083` in Vagrant)
+
+### Notes
+- The `-v` flag in `docker-compose down -v` removes named volumes, including the database data. This is necessary when the schema changes.
+- If using Vagrant, run these commands inside the VM after `vagrant ssh`.
+- Rebuilding may take a few minutes the first time as it downloads dependencies and builds the JAR.
+
+
 ## 4. Logging In
 1. Open the frontend URL (e.g., `http://localhost` or `http://localhost:8082`).
 2. Click **Login**.

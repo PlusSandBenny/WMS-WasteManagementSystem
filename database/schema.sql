@@ -9,7 +9,7 @@ CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(20),
-    password VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
     role ENUM('RESIDENT', 'SUPER_ADMIN', 'ADMIN', 'CONTRACTOR', 'FLEET_MANAGER', 'FINANCE_OFFICER', 'ROUTE_SUPERVISOR') NOT NULL,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
@@ -91,14 +91,14 @@ CREATE TABLE invoices (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     address_id BIGINT NOT NULL,
     lga VARCHAR(100) NOT NULL,
-    year_month VARCHAR(7) NOT NULL,
+    billing_period VARCHAR(7) NOT NULL,
     total_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
     amount_paid DECIMAL(12, 2) NOT NULL DEFAULT 0,
     status ENUM('UNPAID', 'PARTIALLY_PAID', 'PAID') NOT NULL DEFAULT 'UNPAID',
     due_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uq_invoice_address_month (address_id, year_month),
+    UNIQUE KEY uq_invoice_address_month (address_id, billing_period),
     FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
 
@@ -166,4 +166,4 @@ CREATE INDEX idx_addresses_lga ON addresses(lga);
 CREATE INDEX idx_collection_records_address_date ON collection_records(address_id, scheduled_date);
 CREATE INDEX idx_payments_user_status ON payments(user_id, status);
 CREATE INDEX idx_issues_status ON issues(status);
-CREATE INDEX idx_invoices_lga_month ON invoices(lga, year_month);
+CREATE INDEX idx_invoices_lga_month ON invoices(lga, billing_period);

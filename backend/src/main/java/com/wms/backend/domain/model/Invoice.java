@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "invoices", indexes = {
-        @Index(name = "idx_invoices_lga_month", columnList = "lga,year_month"),
-        @Index(name = "idx_invoices_address_month", columnList = "address_id,year_month")
+        @Index(name = "idx_invoices_lga_month", columnList = "lga,billing_period"),
+        @Index(name = "idx_invoices_address_month", columnList = "address_id,billing_period")
 })
 public class Invoice extends BaseEntity {
 
@@ -30,7 +30,7 @@ public class Invoice extends BaseEntity {
     @Column(name = "lga", nullable = false)
     private String lga;
 
-    @Column(name = "year_month", nullable = false)
+    @Column(name = "billing_period", nullable = false)
     private String yearMonth; // YYYY-MM
 
     @Column(name = "total_amount", nullable = false, precision = 12, scale = 2)
@@ -109,4 +109,3 @@ public class Invoice extends BaseEntity {
         return owing.max(BigDecimal.ZERO);
     }
 }
-
