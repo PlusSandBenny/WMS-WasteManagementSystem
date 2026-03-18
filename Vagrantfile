@@ -1,8 +1,8 @@
 Vagrant.configure("2") do |config|
   config.vm.define "WMS"
-  config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 8080, host: 8081
-  config.vm.network "forwarded_port", guest: 3306, host: 3307
+  config.vm.network "forwarded_port", guest: 80, host: 8082
+  config.vm.network "forwarded_port", guest: 8080, host: 8083
+  config.vm.network "forwarded_port", guest: 3306, host: 3308
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "2048"

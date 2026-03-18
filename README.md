@@ -117,9 +117,9 @@ This will:
 - Provision an Ubuntu VM with Docker, Docker Compose, and Git.
 - Clone the repository from GitHub into the VM.
 - Build and run the containers inside the VM.
-- Forward ports: Frontend (VM:80 -> Host:8080), Backend (VM:8080 -> Host:8081), Database (VM:3306 -> Host:3307)
+- Forward ports: Frontend (VM:80 -> Host:8082), Backend (VM:8080 -> Host:8083), Database (VM:3306 -> Host:3308)
 
-Access the application at `http://localhost:8080`.
+Access the application at `http://localhost:8082`.
 
 To SSH into the VM:
 ```bash
