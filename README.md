@@ -86,6 +86,56 @@ PowerShell note (Windows):
   - `cmd /c "npm install"`
   - `cmd /c "npm run dev"`
 
+## Running with Docker
+
+### Prerequisites
+- Docker and Docker Compose installed.
+
+### Build and Run
+```bash
+docker-compose up --build
+```
+
+This will start:
+- Database (MySQL) on port 3306
+- Backend (Spring Boot) on port 8080
+- Frontend (Nginx) on port 80
+
+Access the application at `http://localhost`.
+
+## Running with Vagrant
+
+### Prerequisites
+- Vagrant and VirtualBox installed.
+
+### Setup
+```bash
+vagrant up
+```
+
+This will:
+- Provision an Ubuntu VM with Docker, Docker Compose, and Git.
+- Clone the repository from GitHub into the VM.
+- Build and run the containers inside the VM.
+- Forward ports: Frontend (VM:80 -> Host:8080), Backend (VM:8080 -> Host:8081), Database (VM:3306 -> Host:3307)
+
+Access the application at `http://localhost:8080`.
+
+To SSH into the VM:
+```bash
+vagrant ssh
+```
+
+To stop:
+```bash
+vagrant halt
+```
+
+To destroy the VM:
+```bash
+vagrant destroy
+```
+
 ## Core Endpoints (Phase 1)
 - Auth:
   - `POST /api/auth/request-otp`
